@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<title>2 Angular - Repeat</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js">
+</script>
+</head>
+<body ng-app="hospitalModule" >
+	<h1>Hospital Catalogue</h1>
+	<div>
+		<table>
+		<th>
+		<tr>
+			<!--<td ng-repeat="attr in Object.keys(hospitals[0])">{{Object.keys(hospitals[0])[attr]}}</td>-->
+			<td>Name</td>
+			<td>Address</td>
+			<td>Contact</td>
+		</tr>
+		</th>
+		<tr ng-repeat="h in hospitals">
+			<!--<td ng-repeat="attr in h.keys">{{hospitals[0][h.keys[attr]]}}</td>-->
+			<td>{{h.name}}</td>
+			<td>{{h.address}}</td>
+			<td>{{h.contact}}</td>
+		</tr>
+		</table>
+		<input type="text" ng-model="hospitals[0].name"/>
+	</div>
+</body>
+</html>

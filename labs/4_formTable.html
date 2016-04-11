@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<title>2 Angular - Repeat</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js">
+</script>
+</head>
+<body ng-app="hospitalModule" >
+	<h1>Hospital Catalogue</h1>
+	<div ng-controller="HospitalFormCtrl">
+		<div>
+			<span>Name</span>
+			<input type="text" name="name" ng-model="hospital.name" ng-change="enableAdd=true;"/>
+		</div>
+		<div>
+			<span>Address</span>
+			<input type="text" name="address" ng-model="hospital.address" ng-change="enableAdd=true;"/>
+		</div>
+		<div>
+			<span>Contact</span>
+			<input type="text" name="contact" ng-model="hospital.contact" ng-change="enableAdd=true;"/>
+		</div>
+		<input type="button" value="Add" ng-click="addHospital();" ng-disabled="!enableAdd"/>
+	</div>
+	<div ng-controller="HospitalCtrl">
+		<table>
+		<th>
+		<tr>
+			<!--<td ng-repeat="attr in Object.keys(hospitals[0])">{{Object.keys(hospitals[0])[attr]}}</td>-->
+			<td>Name</td>
+			<td>Address</td>
+			<td>Contact</td>
+		</tr>
+		</th>
+		<tr ng-repeat="h in hospitals">
+			<!--<td ng-repeat="attr in h.keys">{{hospitals[0][h.keys[attr]]}}</td>-->
+			<td>{{h.name}}</td>
+			<td>{{h.address}}</td>
+			<td>{{h.contact}}</td>
+		</tr>
+		</table>
+		<input type="text" ng-model="hospitals[0].name"/>
+		<input type="button" ng-click="sort();" value="Sort"/>
+	</div>
+
+	<script type="text/javascript">
+		var appModule = angular.module("hospitalModule",[]);
+		
+		function HospitalController($scope, $rootScope, hospitals) {
+			$scope.hospitals = hospitals;
+			
+			$scope.sort = function() {
+				console.log("inside sort");
+				hospitals.sort(function(h1, h2) {
+					return h1.name.localeCompare(h2.name);
+				});
+			};
+		}
+		appModule.controller("HospitalCtrl", ['$scope', '$rootScope', 'hospitals', HospitalController]);
+		
+		appModule.controller("HospitalFormCtrl", ["$scope", "hospitals", function(s, h) {
+			s.addHospital = function() {
+				h.push(s.hospital);
+				
+				s.hospital = {};
+				
+				s.enableAdd = false;
+			}
+		}]);
+		
+		appModule.value("hospitals", [{name:'Apollo',address:'Bannerghatta Road', contact:'0805435454'},{name:'Fortis',address:'Bannerghatta Road', contact:'0805435454'},{name:'St. Johns',address:'Bannerghatta Road', contact:'0805435454'},{name:'Nimhans',address:'Bannerghatta Road'}]);
+	</script>
+</body>
+</html>

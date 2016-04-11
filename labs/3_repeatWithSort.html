@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<title>2 Angular - Repeat</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js">
+</script>
+</head>
+<body ng-app="hospitalModule" >
+	<h1>Hospital Catalogue</h1>
+	<div ng-controller="HospitalCtrl">
+		<table>
+		<th>
+		<tr>
+			<!--<td ng-repeat="attr in Object.keys(hospitals[0])">{{Object.keys(hospitals[0])[attr]}}</td>-->
+			<td>Name</td>
+			<td>Address</td>
+			<td>Contact</td>
+		</tr>
+		</th>
+		<tr ng-repeat="h in hospitals">
+			<!--<td ng-repeat="attr in h.keys">{{hospitals[0][h.keys[attr]]}}</td>-->
+			<td>{{h.name}}</td>
+			<td>{{h.address}}</td>
+			<td>{{h.contact}}</td>
+		</tr>
+		</table>
+		<input type="text" ng-model="hospitals[0].name"/>
+		<input type="button" ng-click="sort();" value="Sort"/>
+	</div>
+
+	<div ng-controller="HospitalCtrl">
+		<h2>Controller 2</h2>
+		<table>
+		<th>
+		<tr>
+			<!--<td ng-repeat="attr in Object.keys(hospitals[0])">{{Object.keys(hospitals[0])[attr]}}</td>-->
+			<td>Name</td>
+			<td>Address</td>
+			<td>Contact</td>
+		</tr>
+		</th>
+		<tr ng-repeat="h in hospitals">
+			<!--<td ng-repeat="attr in h.keys">{{hospitals[0][h.keys[attr]]}}</td>-->
+			<td>{{h.name}}</td>
+			<td>{{h.address}}</td>
+			<td>{{h.contact}}</td>
+		</tr>
+		</table>
+		<input type="button" ng-click="sort();" value="Sort"/>
+	</div>
+	<script type="text/javascript">
+		var appModule = angular.module("hospitalModule",[]);
+		
+		function HospitalController($scope, $rootScope) {
+			$scope.hospitals=[{name:'Apollo',address:'Bannerghatta Road', contact:'0805435454'},{name:'Fortis',address:'Bannerghatta Road', contact:'0805435454'},{name:'St. Johns',address:'Bannerghatta Road', contact:'0805435454'},{name:'Nimhans',address:'Bannerghatta Road'}];
+			
+			$scope.sort = function() {
+				console.log("inside sort");
+				$scope.hospitals.sort(function(h1, h2) {
+					return h1.name.localeCompare(h2.name);
+				});
+			};
+		}
+		appModule.controller("HospitalCtrl", ['$scope', '$rootScope', HospitalController]);
+		
+	</script>
+</body>
+</html>
