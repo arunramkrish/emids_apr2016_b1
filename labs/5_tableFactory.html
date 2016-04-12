@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<title>1 Angular</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js">
+</script>
+    <script type="text/javascript" src="scripts/5_service.js"></script>
+    <script type="text/javascript" src="scripts/5_factory.js"></script>
+    <script type="text/javascript" src="scripts/5_provider.js"></script>
+    <script type="text/javascript" src="scripts/5_controller.js"></script>
+</head>
+<body ng-app="appModule" ng-controller="appController">
+    <div>
+        <form>
+		<div>
+			<span>Name</span>
+			<input id="childInput" type="text" name="name1" ng-model="hospital.name" ng-change="enableAdd=true;"/>
+		</div>
+		<div>
+			<span>Address</span>
+			<input type="text" name="address" ng-model="hospital.address" ng-change="enableAdd=true;"/>
+		</div>
+		<div>
+			<span>Contact</span>
+			<input type="text" name="contact" ng-model="hospital.contact" ng-change="enableAdd=true;"/>
+		</div>
+		<input type="button" value="Add" ng-click="addHospital();" ng-disabled="!enableAdd"/>
+        </form>
+    </div>
+    <div>
+    <table>
+		<th>
+		<tr>
+			<!--<td ng-repeat="attr in Object.keys(hospitals[0])">{{Object.keys(hospitals[0])[attr]}}</td>-->
+			<td>Name</td>
+			<td>Address</td>
+			<td>Contact</td>
+		</tr>
+		</th>
+		<tr ng-repeat="h in hospitals">
+			<!--<td ng-repeat="attr in h.keys">{{hospitals[0][h.keys[attr]]}}</td>-->
+			<td>{{h.name}}</td>
+			<td>{{h.address}}</td>
+			<td>{{h.contact}}</td>
+		</tr>
+		</table>
+    </div>
+</body>
+</html>

@@ -61,7 +61,8 @@
 				});
 			};
 		}
-		appModule.controller("HospitalCtrl", ['$scope', '$rootScope', HospitalController]);
+        HospitalController.$inject = ['$scope', '$rootScope'];
+		appModule.controller("HospitalCtrl", HospitalController);
 		
 	</script>
 </body>

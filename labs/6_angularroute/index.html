@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<title>1 Angular</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js">
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js">
+</script>
+    <script type="text/javascript" src="scripts/page1.js"></script>
+    <script type="text/javascript" src="scripts/page2.js"></script>
+</head>
+<body ng-app="routingApp" >
+    <div><a href="#/page1.html">Page 1</a>
+        <a href="#/page2.html">Page 2</a>
+    </div>
+    <div ng-view></div>
+
+    <script>
+        var routingApp = angular.module("routingApp", ["ngRoute", "page1", "page2"]);
+            
+    </script>
+</body>
+</html>

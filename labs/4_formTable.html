@@ -7,10 +7,13 @@
 </head>
 <body ng-app="hospitalModule" >
 	<h1>Hospital Catalogue</h1>
+    <span>Root scope Name </span>
+    			<input id="rootInput" type="text" name="name1" ng-model="hospital.name" ng-change="enableAdd=true;"/>
+
 	<div ng-controller="HospitalFormCtrl">
 		<div>
 			<span>Name</span>
-			<input type="text" name="name" ng-model="hospital.name" ng-change="enableAdd=true;"/>
+			<input id="childInput" type="text" name="name1" ng-model="hospital.name" ng-change="enableAdd=true;"/>
 		</div>
 		<div>
 			<span>Address</span>
